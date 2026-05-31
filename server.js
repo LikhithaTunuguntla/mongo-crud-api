@@ -10,7 +10,7 @@ const app = express();
 
 const port = process.env.PORT || '3000'
 
-const Database_Url = process.env.Database_Url ||"mongodb+srv://likhithabatchu0697:LikhiRakhi@cluster0.ig79bto.mongodb.net/"
+const Database_Url = process.env.Database_Url ||"mongodb+srv://likhithabatchu0697:LikhiRakhi@cluster0.t6fbdt7.mongodb.net/?appName=Cluster0"
 
 //Database Connection
 connectDB(Database_Url);
