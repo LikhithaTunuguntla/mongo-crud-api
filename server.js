@@ -1,22 +1,24 @@
-import express from 'express'
+import express from 'express';
+import dotenv from 'dotenv';
+import connectDB from './config/db.js';
+import employeeRoutes from './routes/employeeRoutes.js';
 
-import connectDB from './config/db.js'
-import { connect } from 'mongoose';
-
-import route from './app/routes/note_routes.js';
+dotenv.config();
 
 const app = express();
+const PORT = process.env.PORT || 3000;
+const DATABASE_URL = process.env.DATABASE_URL;
 
+// Database Connection
+connectDB(DATABASE_URL);
 
-const port = process.env.PORT || '3000'
-
-const Database_Url = process.env.Database_Url ||"mongodb+srv://likhithabatchu0697:LikhiRakhi@cluster0.t6fbdt7.mongodb.net/?appName=Cluster0"
-
-//Database Connection
-connectDB(Database_Url);
-
-app.use(express.urlencoded({extended:false}));
+// Middleware
 app.use(express.json());
-app.use('/',route);
 
-app.listen(port);
+// Routes
+app.use('/api/employees', employeeRoutes);
+
+// Start Server
+app.listen(PORT, () => {
+  console.log(`🚀 Server running on port ${PORT}`);
+});
